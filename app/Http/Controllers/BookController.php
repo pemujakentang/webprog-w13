@@ -120,7 +120,12 @@ class BookController extends Controller
     {
         //
         // dd($book);
-        $book->delete();
-        return redirect('/admin/books');
+        if (auth()->user()->role_id == 1) {
+            $book->delete();
+            return redirect('/admin/books');
+        }else{
+            return redirect('/books');
+        }
+        
     }
 }
